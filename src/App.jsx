@@ -1,9 +1,12 @@
 import { Check, Trash } from "@phosphor-icons/react"
+import { useContext } from "react"
+import { CompletoContext } from "./context/CompletoContext"
 
 
 
 function App() {
-  
+  // const {lista, adicionaLista} = useContext(AdicionaTarefa)
+  const { tarefaCompleta, alteraTarefa } = useContext(CompletoContext);
   
 
   return (
@@ -67,9 +70,10 @@ function App() {
           <div className="flex flex-col gap-3">
             {/* Item */}
             <div className="flex flex-1 justify-between items-center gap-3 p-4 rounded-lg bg-cinza-500 border-[1px] border-cinza-400">
-              <div className="flex">
+              <div onClick={alteraTarefa}
+              className={`flex ${estadoTarefa === "pendente"? "" : "text-cinza-300 line-through"}` }>
                 <label htmlFor="checkbox" className="flex items-center gap-3 p-1">
-                  <input type="checkbox" className="hidden"/>
+                  <input type="checkbox" className="hidden" checked="false"/>
                   <span 
                     className="
                       rounded-full w-4 h-4 flex items-center justify-center 
